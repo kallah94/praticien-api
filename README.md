@@ -116,7 +116,7 @@ praticien-api/
    ```
 
 3. Accédez à l'application :
-    - Swagger UI : http://localhost:8080/swagger-ui.html
+    - Swagger UI : http://localhost:8080/swagger-ui/index.html#/
     - URL de base de l'API : http://localhost:8080/api
 
 ## Documentation de l'API
