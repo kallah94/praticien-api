@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 @RestController
 @RequestMapping("/api/praticiens")
 @Tag(name = "Praticiens", description = "API pour gérer les praticiens")
@@ -39,6 +38,9 @@ public class PraticienController {
     @GetMapping("/{id}")
     @Operation(summary = "Récupérer un praticien par ID", description = "Retourne un praticien spécifique par son ID")
     public ResponseEntity<Praticien> getPraticienById(@PathVariable String id) {
+        if (id == null || id.isEmpty()) {
+            throw new IllegalArgumentException("ID cannot be null or empty");
+        }
         Praticien praticien = praticienService.findById(id);
         return new ResponseEntity<>(praticien, HttpStatus.OK);
     }
@@ -53,6 +55,10 @@ public class PraticienController {
     @GetMapping("/specialite/{specialiteId}")
     @Operation(summary = "Rechercher des praticiens par spécialité", description = "Retourne les praticiens ayant une spécialité donnée")
     public ResponseEntity<List<Praticien>> getPraticiensBySpecialite(@PathVariable String specialiteId) {
+        if (specialiteId == null || specialiteId.isEmpty()) {
+            throw new IllegalArgumentException("Specialty ID cannot be null or empty");
+        }
+        System.out.println("Request received for specialty ID: " + specialiteId);
         List<Praticien> praticiens = praticienService.findBySpecialite(specialiteId);
         return new ResponseEntity<>(praticiens, HttpStatus.OK);
     }
@@ -81,6 +87,8 @@ public class PraticienController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    // Endpoints pour la gestion des spécialités
+
     @PostMapping("/{praticienId}/specialites/{specialiteId}")
     @Operation(summary = "Ajouter une spécialité à un praticien", description = "Ajoute une spécialité existante à un praticien")
     public ResponseEntity<Praticien> addSpecialiteToPraticien(
@@ -100,6 +108,8 @@ public class PraticienController {
         Praticien updatedPraticien = praticienService.removeSpecialite(praticienId, specialiteId);
         return new ResponseEntity<>(updatedPraticien, HttpStatus.OK);
     }
+
+    // Endpoints pour la gestion des adresses
 
     @GetMapping("/{praticienId}/adresses")
     @Operation(summary = "Récupérer toutes les adresses d'un praticien", description = "Retourne toutes les adresses d'un praticien")

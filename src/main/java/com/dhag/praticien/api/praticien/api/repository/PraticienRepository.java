@@ -13,7 +13,7 @@ public interface PraticienRepository  extends MongoRepository<Praticien, String>
 
     List<Praticien> findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCase(String nom, String prenom);
 
-    @Query("{'specialites.$id': ?0}")
+    @Query("{ 'specialites.id' : ?0 }")
     List<Praticien> findBySpecialiteId(String specialiteId);
 
     List<Praticien> findByActif(boolean actif);
