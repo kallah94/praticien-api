@@ -121,10 +121,8 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private void createPraticiens(List<Specialite> specialites) {
-        // Generate practitioners with Senegalese context
         List<Praticien> praticiens = new ArrayList<>();
 
-        // Practitioner 1 - Dr. Moustapha Diop
         Praticien diop = new Praticien();
         diop.setNom("Diop");
         diop.setPrenom("Moustapha");
@@ -158,7 +156,6 @@ public class DataInitializer implements CommandLineRunner {
         diop.setAdresses(diopAdresses);
         praticiens.add(diop);
 
-        // Practitioner 2 - Dr. Fatou Sall
         Praticien sall = new Praticien();
         sall.setNom("Sall");
         sall.setPrenom("Fatou");
@@ -183,7 +180,6 @@ public class DataInitializer implements CommandLineRunner {
         sall.setAdresses(sallAdresses);
         praticiens.add(sall);
 
-        // Practitioner 3 - Dr. Amadou Ndiaye
         Praticien ndiaye = new Praticien();
         ndiaye.setNom("Ndiaye");
         ndiaye.setPrenom("Amadou");
@@ -218,7 +214,6 @@ public class DataInitializer implements CommandLineRunner {
         ndiaye.setAdresses(ndiayeAdresses);
         praticiens.add(ndiaye);
 
-        // Practitioner 4 - Dr. Aissatou Fall
         Praticien fall = new Praticien();
         fall.setNom("Fall");
         fall.setPrenom("Aissatou");
@@ -243,7 +238,6 @@ public class DataInitializer implements CommandLineRunner {
         fall.setAdresses(fallAdresses);
         praticiens.add(fall);
 
-        // Practitioner 5 - Dr. Abdoulaye Mbaye
         Praticien mbaye = new Praticien();
         mbaye.setNom("Mbaye");
         mbaye.setPrenom("Abdoulaye");
@@ -268,7 +262,7 @@ public class DataInitializer implements CommandLineRunner {
         mbaye.setAdresses(mbayeAdresses);
         praticiens.add(mbaye);
 
-        // Practitioner 6 - Dr. Omar Seck (Saint-Louis)
+
         Praticien seck = new Praticien();
         seck.setNom("Seck");
         seck.setPrenom("Omar");
@@ -293,7 +287,6 @@ public class DataInitializer implements CommandLineRunner {
         seck.setAdresses(seckAdresses);
         praticiens.add(seck);
 
-        // Practitioner 7 - Dr. Mariama Gueye (Thiès)
         Praticien gueye = new Praticien();
         gueye.setNom("Gueye");
         gueye.setPrenom("Mariama");
@@ -314,11 +307,10 @@ public class DataInitializer implements CommandLineRunner {
         gueyeWork.setPays("Sénégal");
         gueyeWork.setAdressePrincipale(true);
         gueyeAdresses.add(gueyeWork);
-
+        System.out.println("Test Test");
         gueye.setAdresses(gueyeAdresses);
         praticiens.add(gueye);
 
-        // Save all practitioners to the database
         praticienRepository.saveAll(praticiens);
     }
 }
